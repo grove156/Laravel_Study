@@ -6,5 +6,6 @@
   <body>
     <h1>{{$name}} {{$age}}</h1>
     <h2><?=isset($names)? "$names":"hello";?></h2>
+    
   </body>
 </html>
