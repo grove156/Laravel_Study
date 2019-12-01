@@ -22,5 +22,8 @@ Route::get('/example01', function(){
 });
 Route::get('/ex02', function(){
     $arr=['apple','pear','banana','tomato'];
-    return view('ex02',['arr'=>$arr]);
+    $members =['name'=>'Kim','age'=>28, 'address'=>'Melbourne'],
+              ['name'=>'Myeongkeun','age'=>30, 'address'=>'Seoul'];
+    return view('ex02',['members'=>$members, 'arr'=>$arr]);
+
 });

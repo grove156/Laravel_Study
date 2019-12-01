@@ -9,3 +9,9 @@
     <li>{{$arr[$i]}}</li>
   @endfor
 </ol>
+
+<ul>
+  @foreach($members as $member)
+    <li>name:{{$member['name']}} age: {{$member['age']}} address: {{$member['address']}}</li>
+  @endforeach
+</ul>
