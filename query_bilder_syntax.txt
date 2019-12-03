@@ -1,0 +1,77 @@
+//query builder syntax
+DB::insert('INSERT INTO table01(subject,content) VALUES(?,?)', ['Hello tinker','this is the content']);
+
+DB::select('select * from table01');
+
+$tables = DB::select('select * from table01');
+
+echo $tables[0]->subject;
+
+$table = DB::selectOne('select * from table01 where  id= ?',[2] );
+
+DB::table('table01')->get();
+
+DB::table('table01')->first();
+
+DB::table('table01')->find(2);
+
+DB::table('table01')->get(['id','subject']);
+
+DB::table('table01')->where('id','=',1)->get();
+
+DB::table('table01')->where('id','>=',1)->get();
+
+DB::table('table01')->whereId(1)->get();
+
+DB::table('table01')->whereSubject('Hello tinker')->get();
+
+DB::table('table01')->where(function($query){$query->where('id',1);})->get();
+
+DB::table('table01')->insert(
+array('subject'=>'test02', 'content'=>'this is test content')
+);
+
+DB::table('table01')->insert(array(
+array('subject'=>'test04','content'=>'test content04'),
+array('subject'=>'test05','content'=>'test content05'),
+));
+
+DB::table('table01')->where('id','=','1')->update(array('content'=>'test content ya!'));
+
+DB::table('table01')->where('id','<=',5)->delete();
+
+DB::table('table01')->truncate();
+
+DB::table('table01')->pluck('subject');
+
+DB::table('table01')->orderBy('id', 'desc')->get();
+
+DB::table('table01')->where('id','=',2)->count();
+
+DB::table('table01')->count();
+
+//MYSQL login
+mysql -u homestead -p
+	password
+
+//creating table
+mysql> CREATE TABLE authors(
+    -> id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> email VARCHAR(255) NOT NULL,
+    -> password VARCHAR(128) NOT NULL
+    -> ) engine= innoDB default charset=utf8 collate=utf8_unicode_ci;
+
+//eloquent ORM creating
+//in cmd
+php artisan make:model author
+php artisan make:model table01
+
+//access tinker
+php artisan tinker
+
+//creating instance for author
+App\author::get()
+$author = new App\author;
+$author->email = 'test2@test.com';
+$author->passwor = 'password';
+
