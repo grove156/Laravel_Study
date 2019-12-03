@@ -35,3 +35,9 @@ Route::get('/ex04', function(){
     ];
   return view('example04',['members'=>$members]);
 });
+
+Route::get('task', 'TaskController@task');
+
+Route::get('param/{id?}/{arg?}', 'TaskController@param');
+
+Route::resource('articles', 'ArticlesController');

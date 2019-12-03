@@ -69,9 +69,34 @@ php artisan make:model table01
 //access tinker
 php artisan tinker
 
-//creating instance for author
+//creating instance for author save()
 App\author::get()
 $author = new App\author;
 $author->email = 'test2@test.com';
 $author->passwor = 'password';
+$author->save();
 
+//creating instance for author with ::create
+App\author::create([
+   'email'=>'test3@test.com',
+   'password'=>bcrypt('password'),
+    ]);
+
+//bcrypt() is hash function
+$author->password = bcrypt('password');
+
+//Hash::make();
+$author->password = Hash::make('password');
+
+
+*DB migration*
+php artisan make:migration create_posts_table
+php artisan make:migration create_authors_table
+
+php artisan migrate
+php artisan migrate:rollback
+
+php artisan make:migration add_name_to_authors_table --table=authors
+
+php artisan make:controller TaskController
+php artisan make:controller Articles --resource
