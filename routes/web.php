@@ -41,3 +41,33 @@ Route::get('task', 'TaskController@task');
 Route::get('param/{id?}/{arg?}', 'TaskController@param');
 
 Route::resource('articles', 'ArticlesController');
+
+Route::get('auth/login',function(){
+  $loginInfos = [
+    'email'=>'test@test.com',
+    'password'=>'password'
+  ];
+  if(!auth()->attempt($loginInfos)){
+    //attemp takes array, bool $remember = false
+    return 'login unsuccessful';
+  }
+    return redirect('loginOk');
+
+});
+
+Route::get('loginOk',['middle'=>'auth',function(){
+  dump(session()->all());
+//  if(!auth()->check()){
+//    return 'who are you?';
+//  }
+    return 'hello'. auth()->user()->name;
+}]);
+
+Route::get('auth/logout',function(){
+  auth()->logout();
+  return 'you are logged out!';
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
